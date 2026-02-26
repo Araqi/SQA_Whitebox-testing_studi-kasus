@@ -1,4 +1,7 @@
 class MachineMonitor:
+    SANGAT_BAIK = 0.95
+    BAIK = 0.85
+    CUKUP = 0.70
 
     def __init__(self, machine_id, age_years):
         self.machine_id = machine_id
@@ -14,18 +17,21 @@ class MachineMonitor:
         return True
         
     def calculate_efficiency(self, produced, defect):
-        if produced == 0:
-            return 0    
-        good = produced - defect
-        efficiency = good / produced
-        if efficiency >= 0.95:
+        if produced <= 0:
+            return 0
+            
+        efficiency = (produced - defect) / produced
+        
+        return self._classify_efficiency(efficiency)
+    
+    def _classify_efficiency(self, efficiency):
+        if efficiency >= self.SANGAT_BAIK:
             return "SANGAT_BAIK"
-        elif efficiency >= 0.85:
+        if efficiency >= self.BAIK:
             return "BAIK"
-        elif efficiency >= 0.70:
+        if efficiency >= self.CUKUP:
             return "CUKUP"
-        else:
-            return "BURUK"
+        return "BURUK"
         
     def machine_status(self, downtime):
         if downtime == 0:
