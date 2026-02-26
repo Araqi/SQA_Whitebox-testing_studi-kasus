@@ -8,12 +8,12 @@ class TestMachineMonitorDeep(unittest.TestCase):
         self.m_old = MachineMonitor("OLD", 15)
 
     def test_validate_production_logic(self):
-        self.assertFalse(self.m_new.validate_production(-1, 0, 10))  # No 1
-        self.assertTrue(self.m_new.validate_production(0, 0, 0))     # No 2
-        self.assertFalse(self.m_new.validate_production(10, 11, 10)) # No 3
-        self.assertTrue(self.m_new.validate_production(10, 10, 10))  # No 4
-        self.assertFalse(self.m_new.validate_production(10, 2, 0))   # No 5
-        self.assertTrue(self.m_new.validate_production(10, 2, 1))    # No 6
+        self.assertFalse(self.m_new.validate_production(-1, 0, 10))  
+        self.assertTrue(self.m_new.validate_production(0, 0, 0))    
+        self.assertFalse(self.m_new.validate_production(10, 11, 10)) 
+        self.assertTrue(self.m_new.validate_production(10, 10, 10))  
+        self.assertFalse(self.m_new.validate_production(10, 2, 0))  
+        self.assertTrue(self.m_new.validate_production(10, 2, 1))    
 
     def test_calculate_efficiency_logic(self):
         self.assertEqual(self.m_new.calculate_efficiency(0, 0), 0)           
